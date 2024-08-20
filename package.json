@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "dbus-native": "^0.4.0",
-    "dbus-victron-virtual": "github:Chris927/dbus-victron-virtual#f759aff"
+    "dbus-victron-virtual": "github:Chris927/dbus-victron-virtual#28e732f818d9179ddfd1d48080af19c5ee79f069"
   }
 }
