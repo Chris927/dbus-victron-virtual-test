@@ -1,4 +1,4 @@
-const dbus = require('dbus-native');
+const dbus = require('dbus-native-victron');
 const { addVictronInterfaces } = require('dbus-victron-virtual');
 
 // example adopted from https://github.com/sidorares/dbus-native/blob/master/examples/basic-service.js
