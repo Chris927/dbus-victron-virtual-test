@@ -59,7 +59,7 @@ async function proceed() {
       Humidity: 'i',
       Pressure: 'd',
       Status: 'd',
-      DeviceInstance: {
+      'DeviceInstance': {
         type: 'i',
         format: (v) => v.toString()
       },
@@ -80,15 +80,15 @@ async function proceed() {
     'Mgmt/ProcessVersion': '0.1',
     ProductId: 0xC029,
     ProductName: 'Virtual thermometer',
-    Temperature: 0,
+    Temperature: 12.4,
     TemperatureType: 2,
     Humidity: 0,
     Pressure: 0,
     Status: 0,
-    DeviceInstance: 33,
+    'DeviceInstance': 33,
     CustomName: '',
     BatteryVoltage: 3.3,
-    '/Alarms/LowBattery': 3.0,
+    '/Alarms/LowBattery': 0.0,
     emit: function() {
       // no nothing, as usual
     }
@@ -129,6 +129,7 @@ async function proceed() {
     var rand = Math.round(Math.random() * 100);
     if (rand > 75) {
       iface.emit('Rand', Math.round(Math.random() * 100));
+      iface.Temperature += .25;
     }
 
     // set a random value. By calling emitItemsChanged afterwards, the
@@ -156,3 +157,9 @@ async function proceed() {
   }, 1000);
 
 }
+
+// disconnect after some time
+// setTimeout(() => {
+//   sessionBus.connection.end();
+// }, 5000);
+
