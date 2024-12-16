@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dbus-native": "^0.4.0",
-    "dbus-victron-virtual": "github:Chris927/dbus-victron-virtual#28e732f818d9179ddfd1d48080af19c5ee79f069"
+    "dbus-native-victron": "^0.4.2",
+    "dbus-victron-virtual": "^0.1.5",
+    "yargs": "^17.7.2"
   }
 }

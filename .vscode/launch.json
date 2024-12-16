@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Virtual device",
+        "program": "index.js",
+        "env": {
+          "DBUS_ADDRESS": "10.230.1.101:78"
+        },
+        "args": [
+          "--device", "meteo",
+          "--id", "test432"
+        ]
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug Current File",
+        "program": "${file}"
+      },
+      { "type": "node", "request": "attach", "name": "Attach to Process", "processId": "${command:PickProcess}" } 
+      
+    ]
+  }
