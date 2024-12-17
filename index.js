@@ -243,28 +243,6 @@ if (!usedBus) {
   throw new Error('Could not connect to the DBus session bus.');
 }
 
-usedBus.requestName(serviceName, 0x4, (err, retCode) => {
-  // If there was an error, warn user and fail
-  if (err) {
-    throw new Error(
-      `Could not request service name ${serviceName}, the error was: ${err}.`
-    );
-  }
-
-  // Return code 0x1 means we successfully had the name
-  if (retCode === 1) {
-    console.log(`Successfully requested service name "${serviceName}"!`);
-    proceed();
-  } else {
-    /* Other return codes means various errors, check here
-	(https://dbus.freedesktop.org/doc/api/html/group__DBusShared.html#ga37a9bc7c6eb11d212bf8d5e5ff3b50f9) for more
-	information
-	*/
-    throw new Error(
-      `Failed to request service name "${serviceName}". Check what return code "${retCode}" means.`
-    );
-  }
-});
 
 async function proceed() {
 
@@ -329,6 +307,28 @@ async function proceed() {
   // Now we need to actually export our interface on our object
   usedBus.exportInterface(iface, objectPath, ifaceDesc);
 
+  usedBus.requestName(serviceName, 0x4, (err, retCode) => {
+    // If there was an error, warn user and fail
+    if (err) {
+      throw new Error(
+        `Could not request service name ${serviceName}, the error was: ${err}.`
+      );
+    }
+
+    // Return code 0x1 means we successfully had the name
+    if (retCode === 1) {
+      console.log(`Successfully requested service name "${serviceName}"!`);
+    } else {
+      /* Other return codes means various errors, check here
+    (https://dbus.freedesktop.org/doc/api/html/group__DBusShared.html#ga37a9bc7c6eb11d212bf8d5e5ff3b50f9) for more
+    information
+    */
+      throw new Error(
+        `Failed to request service name "${serviceName}". Check what return code "${retCode}" means.`
+      );
+    }
+  });
+
   // Then we can add the required Victron interfaces, and receive some funtions to use
   const {
     getValue,
@@ -350,3 +350,5 @@ async function proceed() {
   // }, 90000);
 
 }
+
+proceed();
